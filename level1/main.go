@@ -1,8 +1,8 @@
 package main
 
 import (
+	"WbInternature2021/level1/src"
 	"fmt"
-	"wbInternature/level1/src"
 )
 
 func main() {
