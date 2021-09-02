@@ -1,11 +1,10 @@
-package src
+package main
 
 import (
 	"bytes"
 	"strings"
 	"testing"
 )
-
 
 func BenchmarkConcat(b *testing.B) {
 	var str string
