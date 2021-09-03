@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func timer (n time.Duration, wg *sync.WaitGroup) {
+func timer(n time.Duration, wg *sync.WaitGroup) {
 	defer wg.Done()
 	ctx, _ := context.WithTimeout(context.Background(), time.Duration(n*time.Second))
 	ch := make(chan interface{})
@@ -18,14 +18,14 @@ func timer (n time.Duration, wg *sync.WaitGroup) {
 		ticker := time.NewTicker(time.Second)
 		for {
 			select {
-				case <- ticker.C:
-					ch <- Data[rand.Intn(len(Data))]
-				case <-ctx.Done():
-					ticker.Stop()
-					return
-				}
+			case <-ticker.C:
+				ch <- Data[rand.Intn(len(Data))]
+			case <-ctx.Done():
+				ticker.Stop()
+				return
 			}
-		}(ch, ctx)
+		}
+	}(ch, ctx)
 
 	go func(ch chan interface{}, ctx context.Context) {
 		for {
@@ -40,7 +40,7 @@ func timer (n time.Duration, wg *sync.WaitGroup) {
 	<-ctx.Done()
 }
 
-func main(){
+func main() {
 	wg := &sync.WaitGroup{}
 	var n time.Duration
 	fmt.Println("Enter time to work in seconds: ")
