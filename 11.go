@@ -5,7 +5,7 @@ import "fmt"
 func arrIntersec(a []int, b []int) (result []int) {
 	m := make(map[int]bool)
 
-	for _, i := range a{
+	for _, i := range a {
 		m[i] = true
 	}
 
